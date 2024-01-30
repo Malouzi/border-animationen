@@ -1,0 +1,214 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    --borderColor: #372cd0;
+}
+
+div {
+    position: relative;
+    width: 140px;
+    height: 64px;
+    margin: 10px;
+}
+
+/*Randlänge der Box ändert sich*/
+.border-radius {
+    border: 1px solid #d02ce6;
+    cursor: pointer;
+    
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        transition: .3s ease-in-out;
+    }
+    
+    &::before {
+        top: -5px;
+        left: -5px;
+        border-top: 1px solid var(--borderColor);
+        border-left: 1px solid var(--borderColor);
+    }
+    
+    &::after {
+        right: -5px;
+        bottom: -5px;
+        border-bottom: 1px solid var(--borderColor);
+        border-right: 1px solid var(--borderColor);
+    }
+    
+    &:hover::before,
+    &:hover::after {
+        width: calc(100% + 9px);
+        height: calc(100% + 9px);
+    }
+}
+
+/*gestriichelte Linie zu laufende gestrichelte Linie*/
+.gradient {
+    background: 
+        linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
+        linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
+        linear-gradient(0deg, #333 50%, transparent 0) repeat-y,
+        linear-gradient(0deg, #333 50%, transparent 0) repeat-y;
+    background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    cursor: pointer;
+    
+    &:hover {
+        animation: linearGradientMove .3s infinite linear;
+    }
+}
+
+/*schwarze Linie zu laufender gestrichelter Linie*/
+.outline {
+    // border: 1px solid #333;
+    outline: 1px solid #333;
+    outline-offset: -1px;
+    transition: all .3s linear;
+    cursor: pointer;
+    
+    &:hover {
+        // border: 1px solid transparent;
+        outline: 1px solid transparent;
+        background: 
+            linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
+            linear-gradient(90deg, #333 50%, transparent 0) repeat-x,
+            linear-gradient(0deg, #333 50%, transparent 0) repeat-y,
+            linear-gradient(0deg, #333 50%, transparent 0) repeat-y;
+        background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px;
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+        animation: linearGradientMove .3s infinite linear;
+    }
+}
+
+@keyframes linearGradientMove {
+    100% {
+        background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
+    }
+} 
+
+/*Rainbow laufender Rand */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+  
+  .rainbow {
+    position: relative;
+    z-index: 0;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+    
+   &::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #399953;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+      animation: rotate 4s linear infinite;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+      /*animation: opacityChange 3s infinite alternate;*/
+    }
+  }
+  
+  @keyframes opacityChange {
+    50% {
+      opacity:1;
+    }
+    100% {
+      opacity: .5;
+    }
+  }
+
+  section {
+    background-color: #000;
+  }
+
+  .conic {
+    position: relative;
+    z-index: 0;
+    width: 400px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #1a232a;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-image: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+      animation: rotate 4s linear infinite;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: #000;
+      border-radius: 5px;
+    }
+  }
+  
+  .conic-demo::after {
+    animation: opacityChange 5s infinite linear;
+  }
+  
+  @keyframes opacityChange {
+    50% {
+      opacity:.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+ 
